@@ -274,7 +274,7 @@ public class Prefs {
     public static String getDnsServerV6(SharedPreferences p)    { return(p.getString(PREF_DNS_SERVER_V6, "2606:4700:4700::1111")); }
     public static boolean isIgnoredMitmVersion(SharedPreferences p, String v) { return p.getString(PREF_IGNORED_MITM_VERSION, "").equals(v); }
     public static String getApiKey(SharedPreferences p)         { return(p.getString(PREF_API_KEY, "")); }
-    public static String getFilenamePrefix(SharedPreferences p)     { return(p.getString(PREF_FILENAME_PREFIX, "PCAPdroid_")); }
+    public static String getFilenamePrefix(SharedPreferences p)     { return(p.getString(PREF_FILENAME_PREFIX, "eXcap_")); }
     public static boolean localNetworkNoticeShown(SharedPreferences p)      { return(p.getBoolean(PREF_LOCAL_NETWORK_NOTICE_SHOWN, false)); }
 
     // Largest connections log size the current device's Java heap can safely host.

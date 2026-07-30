@@ -1,93 +1,130 @@
-# PCAPdroid
-
-PCAPdroid is a privacy-friendly open source app which lets you track, analyze and block the connections made by the other apps in your device. It also allows you to export a PCAP dump of the traffic, inspect HTTP, decrypt TLS traffic and much more!
-
-PCAPdroid simulates a VPN in order to capture the network traffic without root. It does not use a remote VPN server, instead data is processed locally on the device.
-
 <p align="center">
-<img src="https://raw.githubusercontent.com/emanuele-f/PCAPdroid/master/fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg" width="190" />
-<img src="https://raw.githubusercontent.com/emanuele-f/PCAPdroid/master/fastlane/metadata/android/en-US/images/phoneScreenshots/2.jpg" width="190" />
+  <img src="docs/excap-hero.png" alt="eXcap — Network visibility, on your device" width="100%" />
 </p>
 
-Features:
+# eXcap
 
-- Log and examine the connections made by user and system apps
-- Extract the SNI, DNS query, HTTP URL and the remote IP address
-- Inspect HTTP requests and replies thanks to the built-in decoders
-- Inspect the full connections payload as hexdump/text
-- [Decrypt the HTTPS/TLS traffic](https://emanuele-f.github.io/PCAPdroid/tls_decryption) and export the SSLKEYLOGFILE
-- Dump the traffic to a PCAP file, download it from a browser, or stream it to a remote receiver for real-time analysis (e.g. Wireshark)
-- Create rules to filter out the good traffic and easily spot anomalies
-- Identify the country and ASN of remote server via offline DB lookups
-- On rooted devices, capture the traffic while other VPN apps are running
+**eXcap is a professional, no-root Android network diagnostics app.** It creates a local Android VPN interface, attributes connections to installed apps, reconstructs network flows, and keeps packet processing on the device.
 
-Paid features:
+> **Use eXcap only on devices, apps, and traffic you own or are explicitly authorized to inspect.** eXcap is designed for debugging, QA, education, incident response, and privacy auditing—not covert monitoring.
 
-- [Firewall](https://emanuele-f.github.io/PCAPdroid/paid_features#51-firewall): create rules to block individual apps, domains and IP addresses
-- [Malware detection](https://emanuele-f.github.io/PCAPdroid/paid_features#52-malware-detection): detect malicious connections by using third-party blacklists
-- [PCAPng format](https://emanuele-f.github.io/PCAPdroid/paid_features#53-pcapng-format): makes it easier to export and analyze decrypted traffic
+## What it can inspect
 
-If you plan to use PCAPdroid to perform packet analysis, please check out <a href='https://emanuele-f.github.io/PCAPdroid/quick_start#14-packet-analysis'>the specific section</a> of the manual.
+| Capability | What eXcap shows |
+|---|---|
+| **Per-app capture** | Capture one selected app, a selected group, or the full device |
+| **TCP/UDP flows** | Source/destination addresses, ports, protocol, status, timing, direction, and byte counts |
+| **DNS** | Queries, resolved addresses, and app attribution |
+| **Plaintext HTTP** | Request method, host, URL, headers, status, response metadata, and payload views |
+| **HTTPS/TLS metadata** | Remote endpoint, port, SNI/server name when available, TLS metadata, timing, and encrypted byte counts |
+| **Raw payload** | Text and hexadecimal views for payload bytes visible to the capture engine |
+| **Exports** | PCAP, PCAPNG, CSV, and HAR for Wireshark or other analysis tools |
+| **Live analysis** | Connection list, app statistics, hosts, countries, protocols, and real-time traffic totals |
+| **Advanced routing** | Optional SOCKS5, remote collector, UDP exporter, and root-interface capture modes |
 
-<a href="https://f-droid.org/packages/com.emanuelef.remote_capture">
-    <img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
-    alt="Get it on F-Droid"
-    height="80">
-</a> <a href='https://play.google.com/store/apps/details?id=com.emanuelef.remote_capture'><img height="80" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
+### Important HTTPS limitation
 
-You can test the latest features before the official release by adding the [Beta repository](https://pcapdroid.org/fdroid/repo/) to the F-Droid app.
+Normal HTTPS content is encrypted end-to-end. eXcap **does not bypass TLS** and cannot display encrypted request or response bodies by default. It can still show connection metadata such as the target IP, port, app, SNI when observable, timing, and volume.
 
-## User Guide
+An optional compatibility path exists for the separate upstream TLS add-on and a user-installed CA. It requires explicit setup, may not work with certificate-pinned apps, and must only be used with authorization. It is not enabled by default.
 
-Check out the [quick start instructions](https://emanuele-f.github.io/PCAPdroid/quick_start) or the full [User Guide](https://emanuele-f.github.io/PCAPdroid).
+## Product principles
 
-## Sponsors
+- **Local first:** capture parsing occurs on the Android device.
+- **Explicit consent:** Android displays its standard VPN authorization prompt.
+- **Visible operation:** an ongoing notification is shown while capture is active.
+- **No root required:** the standard engine uses Android `VpnService`.
+- **No credential harvesting:** eXcap does not provide automation for extracting passwords, tokens, or private keys.
+- **User-controlled export:** data leaves the app only through an explicitly selected export, collector, or forwarding feature.
 
-The PCAPdroid project is sponsored by [AVEQ GmbH](https://aveq.info).
+## Capture workflow
 
-If you want to sponsor this project [drop me an email](mailto:black.silver@hotmail.it?subject=PCAPdroid%20sponsorship).
+1. Open **eXcap** and choose a dump mode.
+2. Enable **Target apps** and select one app for focused inspection, or leave it off for device-wide capture.
+3. Tap the status ring or **Start**.
+4. Approve Android's local VPN prompt.
+5. Use the selected app to generate traffic.
+6. Open **Connections** to inspect its TCP/UDP flows and HTTP/TLS metadata.
+7. Stop the capture and export PCAP/PCAPNG, CSV, or HAR when needed.
 
-## Community
+## Architecture
 
-You can help the PCAPdroid project in many ways:
+```text
+Selected Android apps
+        │
+        ▼
+Android VpnService / optional root interface
+        │
+        ▼
+Native capture engine (zdtun + nDPI)
+        │
+        ├── flow reconstruction and app/UID attribution
+        ├── DNS, HTTP, TLS/SNI and protocol metadata
+        ├── connection and payload model
+        └── PCAP/PCAPNG/CSV/HAR exporters
+        │
+        ▼
+Java + Material Components user interface
+```
 
-- [Make a donation](https://emanuele-f.github.io/PCAPdroid/donate)
-- Translate the app on [Weblate](https://hosted.weblate.org/engage/pcapdroid/)
-<a href="https://hosted.weblate.org/engage/pcapdroid/">
-  <img src="https://hosted.weblate.org/widgets/pcapdroid/-/app/multi-auto.svg" alt="Translation status" />
-</a>
+See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for data flow, trust boundaries, and implementation details.
 
-- [Discuss](https://github.com/emanuele-f/PCAPdroid/discussions) new features
-- Improve the app theme and layout
-- Star the project on Github and on [Google Play](https://play.google.com/store/apps/details?id=com.emanuelef.remote_capture)
-- Of course provide code pull requests!
+## Build locally
 
-Join the international PCAPdroid community [on Telegram](https://t.me/PCAPdroid) or [on Matrix](https://matrix.to/#/#pcapdroid:matrix.org).
+### Requirements
 
-## Integrating into your APP
+- Linux, macOS, or Windows
+- **JDK 21**
+- Android SDK with:
+  - `platforms;android-37.0`
+  - `build-tools;37.0.0`
+  - `ndk;28.2.13676358`
+  - `cmake;3.22.1`
+- Git submodules initialized
 
-Some features of PCAPdroid can be integrated into a third-party app to provide packet capture capabilities.
+### Commands
 
-- For rooted devices, the [pcapd daemon](https://github.com/emanuele-f/PCAPdroid/tree/master/app/src/main/jni/pcapd) can be directly integrated into your APK to capture network packets.
-- For all the devices, PCAPdroid [exposes an API](https://github.com/emanuele-f/PCAPdroid/blob/master/docs/app_api.md) to control the packet capture and send the captured packets via UDP to your app. This requires to install PCAPdroid along with your app.
+```bash
+git clone --recurse-submodules https://github.com/gptind826-dotcom/eXcap-Android.git
+cd eXcap-Android
+./gradlew testStandardDebugUnitTest lintStandardDebug
+./gradlew assembleStandardDebug
+```
 
-## Open Source
+The installable debug APK is produced at:
 
-PCAPdroid is powered by open source technologies.
+```text
+app/build/outputs/apk/standard/debug/app-standard-debug.apk
+```
 
-- [nDPI](https://github.com/ntop/nDPI): deep packet inspection library, provides the connections metadata
-- [mitmproxy](https://github.com/mitmproxy/mitmproxy): a local proxy for the TLS decryption
-- [zdtun](https://github.com/emanuele-f/zdtun): minimal TCP/IP stack for the non-root capture
+The debug APK is signed with Android's generated debug key and is suitable for testing. Production distribution should use a protected release keystore configured outside the repository.
 
-For the complete list of third party libraries check out the "About" page in the app.
+## GitHub Actions APK
 
-## Building
+`.github/workflows/debug-build.yml` runs on pushes, pull requests, tags, and manual dispatches. It:
 
-1. On Windows, install [gitforwindows](https://gitforwindows.org)
-2. Clone this repo
-3. Inside the repo dir, run `git submodule update --init`. The `submodules` directory should get populated.
-4. Open the project in Android Studio, install the appropriate SDK and the NDK
-5. Build the app
+1. checks out all native submodules;
+2. installs JDK 21 and the pinned Android/NDK toolchain;
+3. runs unit tests and Android lint;
+4. builds `assembleStandardDebug`;
+5. generates a SHA-256 checksum; and
+6. uploads the APK, checksum, lint report, and test report as a workflow artifact.
 
-*Note*: If you get "No valid CMake executable was found", be sure to install the CMake version used by PCAPdroid (currently [3.22.1](https://github.com/emanuele-f/PCAPdroid/blob/master/app/build.gradle)) from the SDK manager
+A tag such as `v1.0.0` also creates a GitHub Release containing the verified debug APK. For public production releases, replace debug signing with a repository/environment secret-backed release-signing job.
 
+## Testing
+
+The project includes upstream unit tests for packet, connection, filtering, HTTP, DNS, IP, decryption-list, and utility behavior. The validation run for this eXcap build is documented in [`docs/TESTING.md`](docs/TESTING.md).
+
+## Privacy and security
+
+- Read [`PRIVACY.md`](PRIVACY.md) before using captures containing personal data.
+- Report vulnerabilities using [`SECURITY.md`](SECURITY.md).
+- Capture files can contain sensitive URLs, headers, DNS names, and plaintext payloads. Store and share them carefully.
+- eXcap's own application ID is `app.excap.network` (`app.excap.network.debug` for debug builds).
+
+## License and attribution
+
+This project is a modified distribution of [PCAPdroid](https://github.com/emanuele-f/PCAPdroid), originally created by **Emanuele Faranda** and contributors. The proven capture engine is reused under **GNU GPL v3 or later**. Upstream copyright, source headers, submodule history, and license notices are intentionally preserved.
+
+The eXcap name, network-node logo, product copy, package identity, dashboard, color system, privacy documentation, and CI packaging are project modifications. See [`NOTICE`](NOTICE) and [`COPYING`](COPYING).

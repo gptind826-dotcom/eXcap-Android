@@ -4,17 +4,16 @@ android {
     ndkVersion = "28.2.13676358"
 
     defaultConfig {
-        applicationId "com.emanuelef.remote_capture"
+        applicationId "app.excap.network"
         minSdkVersion 23
         compileSdk 37
         targetSdk 37
-        versionCode 91
-        versionName "1.9.1"
+        versionCode 1
+        versionName "1.0.0"
 
-        // only include full translations
-        // NOTE: keep in sync with locales_config.xml
-        resourceConfigurations += ["en", "ar", "az", "bn", "de", "es", "fr", "hi", "in", "it", "ja", "ko",
-                                   "ms", "pl", "pt", "pt-rBR", "ru", "ta", "tr", "uk", "ur", "vi", "zh-rCN"]
+        // eXcap 1.0 ships with a reviewed English product experience.
+        // Additional upstream translations can be re-enabled after brand review.
+        resourceConfigurations += ["en"]
     }
 
     flavorDimensions = ["type"]

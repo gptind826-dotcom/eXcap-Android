@@ -3,26 +3,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="210dp"
+    android:background="@drawable/drawer_gradient"
+    android:paddingStart="20dp"
+    android:paddingTop="26dp"
+    android:paddingEnd="20dp"
+    android:paddingBottom="18dp">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/drawer_header_height"
-        android:src="@drawable/drawer_background"
-        android:scaleType="centerCrop"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
+        android:id="@+id/nav_logo"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
+        android:contentDescription="@string/pcapdroid_app_name"
         android:src="@drawable/ic_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintVertical_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,25 +24,54 @@
         android:id="@+id/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:text="PCAPdroid"
+        android:layout_marginStart="14dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/pcapdroid_app_name"
+        android:textColor="@color/onBrand"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/nav_logo"
+        app:layout_constraintStart_toEndOf="@id/nav_logo"
+        app:layout_constraintTop_toTopOf="@id/nav_logo" />
+
+    <TextView
+        android:id="@+id/nav_tagline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.08"
+        android:text="@string/excap_tagline"
+        android:textColor="@color/signalMint"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nav_logo" />
+
+    <TextView
+        android:id="@+id/nav_privacy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="@string/excap_https_note"
+        android:textColor="#D7E4EC"
         android:textSize="12sp"
-        android:textColor="@android:color/primary_text_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintEnd_toStartOf="@id/app_version"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nav_tagline" />
 
     <TextView
         android:id="@+id/app_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        tools:text="vx.y.z"
-        android:focusable="false"
-        android:textSize="12sp"
-        android:textColor="@android:color/primary_text_dark"
+        android:background="@drawable/chip_surface"
+        android:fontFamily="sans-serif-medium"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp"
+        android:textColor="@color/chipText"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="v1.0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

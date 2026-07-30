@@ -1,19 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorTab">#5A458D</color>
-    <color name="colorTabText">@android:color/secondary_text_dark</color>
-    <color name="colorTabTextSelected">@android:color/primary_text_dark</color>
-    <color name="colorPrimary">#6C52AB</color>
-    <color name="colorPrimaryDark">#24144D</color>
-    <color name="colorActionBar">#121212</color>
-    <color name="colorAccent">#03DAC6</color>
-    <color name="colorAccentLight">#BCEBE7</color>
-    <color name="colorBackgroundGray">#1CFFFFFF</color>
-    <color name="navViewBackground">#FF202020</color>
-    <color name="backgroundColor">@color/background_material_dark</color>
-    <color name="drawerItemColor">@android:color/primary_text_dark</color>
+    <color name="colorTab">#49E4CF</color>
+    <color name="colorTabText">#9AA9B8</color>
+    <color name="colorTabTextSelected">#F5FBFF</color>
+    <color name="colorPrimary">#39CDB9</color>
+    <color name="colorPrimaryDark">#050B14</color>
+    <color name="colorActionBar">#08121F</color>
+    <color name="colorAccent">#49E4CF</color>
+    <color name="colorAccentLight">#245F59</color>
+    <color name="colorBackgroundGray">#26FFFFFF</color>
+    <color name="navViewBackground">#0D1826</color>
+    <color name="backgroundColor">#07101D</color>
+    <color name="drawerItemColor">#E6EFF6</color>
     <color name="highContrast">#FFFFFF</color>
-    <color name="cardBorder">#2A2A2A</color>
-    <color name="appBadgeBg">#616161</color>
+    <color name="cardBorder">#243346</color>
+    <color name="appBadgeBg">#314256</color>
     <color name="appBadgeText">#FFFFFF</color>
+
+    <color name="surfaceCard">#0E1A28</color>
+    <color name="surfaceCardMuted">#102A2B</color>
+    <color name="brandText">#F5FBFF</color>
+    <color name="secondaryText">#9AA9B8</color>
+    <color name="onBrand">#FFFFFF</color>
+    <color name="dividerColor">#243346</color>
+    <color name="chipBackground">#163C3A</color>
+    <color name="chipText">#72E8D8</color>
+    <color name="heroStart">#07101D</color>
+    <color name="heroEnd">#10353E</color>
+    <color name="signalCyan">#45D7E8</color>
+    <color name="signalMint">#49E4CF</color>
 </resources>

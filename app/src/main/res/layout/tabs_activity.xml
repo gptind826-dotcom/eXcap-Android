@@ -35,6 +35,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@color/surfaceCard"
+                android:elevation="1dp"
                 app:tabTextColor="@color/colorTabText"
                 app:tabSelectedTextColor="@color/colorTabTextSelected"
                 app:tabIndicatorColor="@color/colorTab"
@@ -43,6 +45,7 @@
 
             <ImageButton
                 android:id="@+id/tab_switch_button"
+                android:backgroundTint="@color/surfaceCard"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
                 android:layout_gravity="center_vertical"

@@ -130,15 +130,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private static final int TOTAL_COUNT = 2;
 
     public static final String TELEGRAM_GROUP_NAME = "PCAPdroid";
-    public static final String GITHUB_PROJECT_URL = "https://github.com/emanuele-f/PCAPdroid";
+    public static final String GITHUB_PROJECT_URL = "https://github.com/gptind826-dotcom/eXcap-Android";
     public static final String DOCS_URL = "https://emanuele-f.github.io/PCAPdroid";
-    public static final String PRIVACY_POLICY_URL = DOCS_URL + "/privacy";
+    public static final String PRIVACY_POLICY_URL = GITHUB_PROJECT_URL + "/blob/main/PRIVACY.md";
     public static final String DONATE_URL = "https://emanuele-f.github.io/PCAPdroid/donate";
     public static final String TLS_DECRYPTION_DOCS_URL = DOCS_URL + "/tls_decryption";
     public static final String PAID_FEATURES_URL = DOCS_URL + "/paid_features";
     public static final String FIREWALL_DOCS_URL = PAID_FEATURES_URL + "#51-firewall";
     public static final String MALWARE_DETECTION_DOCS_URL = PAID_FEATURES_URL + "#52-malware-detection";
-    public static final String API_DOCS_URL = GITHUB_PROJECT_URL + "/blob/master/docs/app_api.md";
+    public static final String API_DOCS_URL = GITHUB_PROJECT_URL + "/blob/main/docs/app_api.md";
     public static final String PCAPNG_DOCS_URL = PAID_FEATURES_URL + "#53-pcapng-format";
 
     private final ActivityResultLauncher<Intent> sslkeyfileExportLauncher =
@@ -158,7 +158,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.main_activity);
-        setTitle("PCAPdroid");
+        setTitle("eXcap");
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         int appver = Prefs.getAppVersion(mPrefs);

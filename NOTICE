@@ -1,0 +1,16 @@
+eXcap 1.0.0
+Copyright (C) 2026 eXcap contributors
+
+This distribution is based on PCAPdroid:
+Copyright (C) 2020-2026 Emanuele Faranda and PCAPdroid contributors
+https://github.com/emanuele-f/PCAPdroid
+
+PCAPdroid and this modified distribution are licensed under the GNU General
+Public License, version 3 or (at your option) any later version. See COPYING.
+
+This distribution preserves upstream source history, copyright headers,
+third-party notices, and native submodule attribution. The eXcap name,
+network-node artwork, product copy, package identity, visual theme,
+dashboard layout, documentation, and CI packaging are modifications.
+
+No endorsement by the original PCAPdroid author is implied.
