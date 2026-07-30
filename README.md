@@ -4,6 +4,8 @@
 
 # eXcap
 
+[![Android CI](https://github.com/gptind826-dotcom/eXcap-Android/actions/workflows/debug-build.yml/badge.svg)](https://github.com/gptind826-dotcom/eXcap-Android/actions/workflows/debug-build.yml)
+
 **eXcap is a professional, no-root Android network diagnostics app.** It creates a local Android VPN interface, attributes connections to installed apps, reconstructs network flows, and keeps packet processing on the device.
 
 > **Use eXcap only on devices, apps, and traffic you own or are explicitly authorized to inspect.** eXcap is designed for debugging, QA, education, incident response, and privacy auditing—not covert monitoring.

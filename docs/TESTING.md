@@ -27,3 +27,16 @@
 
 The test environment could not boot an Android emulator because the container exposes one CPU core while the available Google API images require two. CI repeats compilation, unit tests, lint, APK assembly, and checksum generation on every push and pull request; a two-core device or runner should be used for the manual VPN consent/start-stop smoke test.
 
+## GitHub-hosted validation
+
+GitHub Actions independently completed the full build pipeline on commit `79c735d9e041`:
+
+- Run: <https://github.com/gptind826-dotcom/eXcap-Android/actions/runs/30546936799>
+- Result: **success**
+- Artifact: `eXcap-standard-debug-3`
+- APK: `eXcap-79c735d9e041-debug.apk`
+- APK SHA-256: `bf8f7f755b1a07dfad1227d19315fabca54b41520ad4d065ffeda50f84174939`
+- Downloaded checksum verification: **matched**
+
+GitHub retains this workflow artifact for 30 days. Future pushes produce a newly named artifact and checksum.
+
